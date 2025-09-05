@@ -3,49 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trading View - Frame</title>
+  <title>Trading View - Fullscreen Chart</title>
+  <style>
+    /* Hilangkan margin default */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    /* Container chart full layar */
+    .tradingview-widget-container {
+      height: 100vh;
+      width: 100%;
+    }
+    .tradingview-widget-container__widget {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container" style="height:100%;width:100%">
-  <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/FOREXCOM-EURUSD/?exchange=FOREXCOM" rel="noopener nofollow" target="_blank"><span class="blue-text">EURUSD chart by TradingView</span></a></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-  {
-  "allow_symbol_change": true,
-  "calendar": false,
-  "details": false,
-  "hide_side_toolbar": true,
-  "hide_top_toolbar": false,
-  "hide_legend": false,
-  "hide_volume": false,
-  "hotlist": false,
-  "interval": "D",
-  "locale": "en",
-  "save_image": true,
-  "style": "1",
-  "symbol": "FOREXCOM:EURUSD",
-  "theme": "dark",
-  "timezone": "America/New_York",
-  "backgroundColor": "rgba(0, 0, 0, 1)",
-  "gridColor": "rgba(242, 242, 242, 0.06)",
-  "watchlist": [
-    "OANDA:XAUUSD",
-    "NASDAQ:NDX",
-    "BITGET:BTCUSDT.P"
-  ],
-  "withdateranges": false,
-  "compareSymbols": [
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
     {
-      "symbol": "FOREXCOM:GBPUSD",
-      "position": "SameScale"
+      "autosize": true,
+      "symbol": "FOREXCOM:EURUSD",
+      "interval": "D",
+      "timezone": "America/New_York",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en",
+      "allow_symbol_change": true,
+      "hide_side_toolbar": true,
+      "hide_top_toolbar": false,
+      "save_image": true,
+      "backgroundColor": "rgba(0, 0, 0, 1)",
+      "gridColor": "rgba(242, 242, 242, 0.06)",
+      "watchlist": [
+        "OANDA:XAUUSD",
+        "NASDAQ:NDX",
+        "BITGET:BTCUSDT.P"
+      ],
+      "compareSymbols": [
+        {
+          "symbol": "FOREXCOM:GBPUSD",
+          "position": "SameScale"
+        }
+      ]
     }
-  ],
-  "studies": [],
-  "autosize": true
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
 </body>
-</html>l
+</html>
