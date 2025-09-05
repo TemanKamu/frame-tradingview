@@ -3,59 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trading View - Fullscreen Chart</title>
+  <title>Trading View - Fullscreen Chart with Drawing Layer</title>
   <style>
-    /* Hilangkan margin default */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
     }
-    /* Container chart full layar */
-    .tradingview-widget-container {
+    .container {
+      position: relative;
       height: 100vh;
       width: 100%;
     }
+    .tradingview-widget-container,
     .tradingview-widget-container__widget {
-      height: 100vh;
+      height: 100%;
       width: 100%;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-    {
-      "autosize": true,
-      "symbol": "FOREXCOM:EURUSD",
-      "interval": "D",
-      "timezone": "America/New_York",
-      "theme": "dark",
-      "style": "1",
-      "locale": "en",
-      "allow_symbol_change": true,
-      "hide_side_toolbar": true,
-      "hide_top_toolbar": false,
-      "save_image": true,
-      "backgroundColor": "rgba(0, 0, 0, 1)",
-      "gridColor": "rgba(242, 242, 242, 0.06)",
-      "watchlist": [
-        "OANDA:XAUUSD",
-        "NASDAQ:NDX",
-        "BITGET:BTCUSDT.P"
-      ],
-      "compareSymbols": [
-        {
-          "symbol": "FOREXCOM:GBPUSD",
-          "position": "SameScale"
-        }
-      ]
-    }
-    </script>
+  <div class="container">
+    <!-- TradingView Widget -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+      {
+        "autosize": true,
+        "symbol": "FOREXCOM:EURUSD",
+        "interval": "D",
+        "theme": "dark",
+        "locale": "en",
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true
+      }
+      </script>
+    </div>
+
+    <!-- Drawing Canvas -->
+    <canvas id="drawLayer"></canvas>
   </div>
-  <!-- TradingView Widget END -->
+
+  <script>
+    const canvas = document.getElementById("drawLayer");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let drawing = false;
+
+    canvas.addEventListener("mousedown", () => { drawing = true; ctx.beginPath(); });
+    canvas.addEventListener("mouseup", () => { drawing = false; });
+    canvas.addEventListener("mousemove", (e) => {
+      if (!drawing) return;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "red";
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+    });
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
