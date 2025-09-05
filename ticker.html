@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticker</title>
+  <style>
+    /* Hilangkan margin default */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    /* Container chart full layar */
+    .tradingview-widget-container {
+      height: 100vh;
+      width: 100%;
+    }
+    .tradingview-widget-container__widget {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:EURUSD",
+      "title": "EURUSD"
+    },
+    {
+      "proName": "FOREXCOM:GBPUSD",
+      "title": "GBPUSD"
+    },
+    {
+      "proName": "OANDA:XAUUSD",
+      "title": "GOLD"
+    },
+    {
+      "proName": "OANDA:XAGUSD",
+      "title": "SILVER"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "BITCOIN"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "ETHERIUM"
+    },
+    {
+      "proName": "NASDAQ:NDX",
+      "title": "NASDAQ"
+    }
+  ],
+  "colorTheme": "light",
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": true
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+</body>
+</html>
